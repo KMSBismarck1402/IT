@@ -1,0 +1,15 @@
+{
+    "files.associations": {
+        "iomanip": "cpp",
+        "numbers": "cpp",
+        "iostream": "cpp",
+        "*.tcc": "cpp",
+        "bitset": "cpp",
+        "ostream": "cpp",
+        "cmath": "cpp",
+        "numeric": "cpp",
+        "random": "cpp",
+        "vector": "cpp",
+        "string": "cpp"
+    }
+}

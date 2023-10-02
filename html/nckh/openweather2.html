@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather Map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.min.js"></script>
+</head>
+
+<body>
+    <div id="mapid" style="height: 500px;"></div>
+    <script>
+        const mymap = L.map('mapid').setView([51.505, -0.09], 13);
+        const tileLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        });
+        tileLayer.addTo(mymap);
+
+        fetch('https://api.openweathermap.org/data/2.5/weather?q=London&appid=009e36fc0d34a9d0ad3d457cd2d7a884')
+            .then(response => response.json())
+            .then(data => {
+                const marker = L.marker([data.coord.lat, data.coord.lon]).addTo(mymap);
+                marker.bindPopup(`The temperature in ${data.name} is ${Math.round(data.main.temp - 273.15)}°C`);
+            });
+    </script>
+</body>
+
+</html>

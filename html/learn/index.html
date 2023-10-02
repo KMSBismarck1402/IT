@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<!--
+    introduct :
+    1. h1 -> h6 : heading
+    2. p : paragraph
+    3. img : image src="link ahr" alt="chữ được in ra khi link ảnh lỗi"
+    4. a : anchor
+    5. ul, li : unordered list, list item
+    6. table
+    7. input
+    8. button
+    9. div
+
+    prio : 
+    !important : đứng nhất (nhiều important vẫn xét điểm)
+    Inline(pre #) : 1000
+    #id : 100
+    .class : 10
+    tag : 1
+    có thể cộng prio point
+    *(universal) : 0 
+
+    cách đặt biến : --tên biến (có local và global)
+--> 
+<html lang="vi">
+    <!-- đầu -->
+    <head>
+        <title> Thiên Hồng Phúc </title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="main.css"> <!--link external css
+        ưu tiên theo vị trí gọi trong code-->
+        <style>
+            *{
+                margin : 8px;
+            }
+            .box
+            {
+                width: 100vw;
+                height : 100px;
+                background-color : cyan;
+                <!--
+                    % : 
+                    vw,vh : v: viewport
+                    w : width, h : height
+                -->
+            }
+            html
+            {
+                font-size: 100%;
+            }
+            h1 
+            {
+                font-size: 3rem;
+            }
+        </style>
+    </head>
+
+    <!-- thân -->
+    <body>
+        <div class="box"></div>
+        <h1 title="anno"> Công ty TNHH TMDV THP </h1>
+        <div>
+            <input type="text">
+            <input type="checkbox">
+            <input name="boobs size" type="radio">
+            <input name="boobs size" type="radio">
+            <button>Summit</button>
+        </div>
+
+        <h2 style="color : blue"> Sản Phẩm </h2>
+        <img    src="https://owlgaming.vn/wp-content/uploads/2021/09/ban-phim-co-keychron-q1-black.jpg" alt="phím cơ xinh tươi">
+        <a  href="https://www.youtube.com/watch?v=4yIUdnbfr-I"> Web bán hàng</a>
+        
+        <ul>
+            <li style="color : blue">sản phẩm a</li>
+            <li>sản phẩm b</li>
+            <li></li>
+            <li></li>
+        </ul>
+        
+        <ol>
+            <li></li>
+            <li></li>
+        </ol>
+        
+        <table>
+            <thead>
+                <th>Tên</th>
+                <th>Địa chỉ</th>
+                <th>SĐT</th>
+            </thead>
+
+            <tbody>
+                <tr id="first-heading-id">
+                    <td>a</td>
+                    <td>b</td>
+                    <td>c</td>
+                </tr>
+                <tr class="second-heading-class">
+                    <td>d</td>
+                    <td>e</td>
+                    <td>f</td>
+                </tr>
+                <tr class="second-heading-class">
+                    <td>g</td>
+                    <td>h</td>
+                    <td>i</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>

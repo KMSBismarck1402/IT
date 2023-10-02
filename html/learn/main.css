@@ -1,0 +1,20 @@
+:root
+{
+    --text-color : green;
+}
+
+h1 
+    {
+        color : var(--text-color);
+        font-size: 50px;
+    }
+#first-heading-id
+{
+    color : aquamarine;
+    font-size : 30px;
+}
+.second-heading-class
+{
+    color :red;
+    font-size : 25px;
+}

@@ -1,0 +1,242 @@
+#include "Arduino.h"
+#include "path.h"
+//   ADJUST THESE PARAMS TO FIT THE MAP
+//--------------------------------------
+#define numV 14
+#define numE 19
+#define finish 13
+#define start 0
+#define INT_MAX 200
+pclass::pclass(){
+}
+void swap(int &a, int &b){int c=a; a=b; b=c;}
+
+byte graph[numV][numV]={
+    {0,68,66,0,0,0,0,0,0,0,0,0,0,0},
+    {68,0,121,92,0,0,0,0,0,0,0,0,0,0},
+    {66,121,0,69,38,0,0,0,0,0,0,0,0,0},
+    {0,92,69,0,0,0,23,0,0,0,0,0,0,0},
+    {0,0,38,0,0,44,0,50,0,0,0,0,0,0},
+    {0,0,0,0,44,0,32,0,36,0,0,0,0,0},
+    {0,0,0,23,0,32,0,0,0,35,0,0,0,0},
+    {0,0,0,0,50,0,0,0,27,0,0,0,94,0},
+    {0,0,0,0,0,36,0,27,0,27,39,0,0,0},
+    {0,0,0,0,0,0,35,0,27,0,0,0,0,0},
+    {0,0,0,0,0,0,0,0,39,0,0,52,0,0},
+    {0,0,0,0,0,0,0,0,0,0,52,0,0,17},
+    {0,0,0,0,0,0,0,94,0,0,0,0,0,67},
+    {0,0,0,0,0,0,0,0,0,0,0,17,67,0}
+};
+
+byte direction[numV][numV]={
+    {INT_MAX,-90,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX},
+    {90,INT_MAX,45,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX},
+    {180,-135,INT_MAX,-90,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX},
+    {INT_MAX,180,90,INT_MAX,INT_MAX,INT_MAX,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX},
+    {INT_MAX,INT_MAX,180,INT_MAX,INT_MAX,-90,INT_MAX,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX},
+    {INT_MAX,INT_MAX,INT_MAX,INT_MAX,90,INT_MAX,-90,INT_MAX,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX},
+    {INT_MAX,INT_MAX,INT_MAX,180,INT_MAX,90,INT_MAX,INT_MAX,INT_MAX,0,INT_MAX,INT_MAX,INT_MAX,INT_MAX},
+    {INT_MAX,INT_MAX,INT_MAX,INT_MAX,180,INT_MAX,INT_MAX,INT_MAX,-90,INT_MAX,INT_MAX,INT_MAX,0,INT_MAX},
+    {INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,180,INT_MAX,90,INT_MAX,-90,0,INT_MAX,INT_MAX,INT_MAX},
+    {INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,180,INT_MAX,90,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX},
+    {INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,180,INT_MAX,INT_MAX,-90,INT_MAX,INT_MAX},
+    {INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,90,INT_MAX,INT_MAX,0},
+    {INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,180,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,-90},
+    {INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,INT_MAX,180,90,INT_MAX}
+};
+
+int pq_index_of_dis[numV]={0,1,2,3,4,5,6,7,8,9,10,11,12,13};
+//--------------------------------------
+int dis[numV], previous[numV], visited[numV], Path[50];
+String c[20];
+int num_visited_station=0, Length[20];
+bool visited_station[7]={0,0,0,0,0,0,0};
+int length_path=1;
+
+//with parameter length, this function can heapify
+//a PQ with specified length
+//unused element can be transferred to the end
+void heapify_smallest(int *b, int index, int length){
+    int smallest=index;
+    if(index*2+1<length){
+        heapify_smallest(b,index*2+1,length); 
+        if(dis[b[smallest]]>dis[b[index*2+1]]) smallest=index*2+1;
+    }
+    if(index*2+2<length){
+        heapify_smallest(b,index*2+2,length); 
+        if(dis[b[smallest]]>dis[b[index*2+2]]) smallest=index*2+2;
+    }
+    if(smallest!=index){
+        swap(b[smallest],b[index]);
+    }
+}
+
+void addPath(int current){
+    if(previous[current]!=-1){
+        if(
+            (current==2 && !visited_station[2]) ||
+            (current==3 && !visited_station[3]) ||
+            (current==6 && !visited_station[6])
+        ){
+            num_visited_station++;
+            visited_station[current]=true;
+        }
+        addPath(previous[current]);
+        Path[length_path]=current;
+        length_path++;
+    }
+}
+void input_empty_edge(int num_empty_edges, int a[], int b[]){
+    for(int i=0;i<num_empty_edges;i++){
+        graph[a[i]][b[i]]=0;
+        graph[b[i]][a[i]]=0;
+    }
+}
+
+int findNearestStation(int s){
+    //pre-dijkstra
+    for(int i=0;i<numV;i++){
+        dis[i]=INT_MAX;
+        visited[i]=false;
+    }
+    memset(previous,-1,sizeof(previous));
+    int length=numV, temp_dis, nearest_station=INT_MAX, min_dis=INT_MAX, bestV=s;
+    dis[s]=0;
+    previous[s]=-1;
+    visited[s]=true;
+
+    //dijkstra
+    while(length>0){// check empty
+        heapify_smallest(pq_index_of_dis,0,length);
+        bestV=pq_index_of_dis[0];
+        // visited[bestV]=true;
+        for(int i=0;i<numV;i++){
+            if( !visited[i] && graph[bestV][i]>0 ){
+                temp_dis=dis[bestV]+graph[bestV][i];
+                if(temp_dis< dis[i]){
+                    dis[i]=temp_dis;
+                    if(
+                        temp_dis<min_dis &&
+                        (i==2 || i==3 || i==6) &&
+                        !visited_station[i]
+                    ){
+                        min_dis=temp_dis;
+                        nearest_station=i;
+                    }
+                    previous[i]=bestV;
+                }
+            }
+        }
+        //transfer unused element to back (0th element)
+        swap(pq_index_of_dis[0],pq_index_of_dis[length-1]);
+        //reduce length need to be heapified
+        length--;
+    }
+    // num_visited_station++;
+    addPath(nearest_station);
+    return nearest_station;
+}
+
+int findWarehouse(int s){
+    //pre-dijkstra
+    for(int i=0;i<numV;i++){
+        dis[i]=INT_MAX;
+        visited[i]=false;
+    }
+    memset(previous,-1,sizeof(previous));
+    int length=numV, temp_dis, bestV=s;
+    dis[s]=0;
+    previous[s]=-1;
+    visited[s]=true;
+
+    //dijkstra
+    while(length>0){// check empty
+        heapify_smallest(pq_index_of_dis,0,length);
+        bestV=pq_index_of_dis[0];
+        // visited[bestV]=true;
+        for(int i=0;i<numV;i++){
+            if( !visited[i] && graph[bestV][i]>0 ){
+                temp_dis=dis[bestV]+graph[bestV][i];
+                if(temp_dis< dis[i]){
+                    dis[i]=temp_dis;
+                    previous[i]=bestV;
+                }
+            }
+        }
+        //transfer unused element to back (0th element)
+        swap(pq_index_of_dis[0],pq_index_of_dis[length-1]);
+        //reduce length need to be heapified
+        length--;
+    }
+    addPath(8);
+    return 8;
+}
+
+void createPath(){
+    int vertext_min_dis;
+    vertext_min_dis=findNearestStation(start);
+    vertext_min_dis=findWarehouse(vertext_min_dis);
+    while(num_visited_station<3){
+        vertext_min_dis=findNearestStation(vertext_min_dis);
+        vertext_min_dis=findWarehouse(vertext_min_dis);
+    }
+    Path[length_path]=10;
+    Path[length_path+1]=11;
+    Path[length_path+2]=13;
+    length_path+=3;
+}
+
+void createCommand(int s){
+    createPath();
+    //byte length;
+    c[0]="STA";//start
+    int curr_dir = 0, curr_pos=s;
+    for(int i=1;i<length_path;i++){
+        //itoa(graph[curr_pos][Path[i]],length,10);
+        switch(direction[curr_pos][Path[i]]-curr_dir){
+            case 0:
+                c[i]="F";Length[i] = graph[curr_pos][Path[i]]; break;
+            case 90: case -270:
+                c[i]="L90&F";Length[i] = graph[curr_pos][Path[i]]; break;
+            case -90: case 270:
+                c[i]="R90&F";Length[i] = graph[curr_pos][Path[i]]; break; 
+            case 180: case -180:
+                c[i]="B&F";Length[i] = graph[curr_pos][Path[i]]; break;
+            case -135: case 255:
+                c[i]="R135&F";Length[i] = graph[curr_pos][Path[i]]; break;
+            case 135: case -255:
+                c[i]="L135&F";Length[i] = graph[curr_pos][Path[i]]; break;
+            case 45: case -315:
+                c[i]="L45&F";Length[i] = graph[curr_pos][Path[i]]; break;
+            case -45: case 315:
+                c[i]="R45&F";Length[i] = graph[curr_pos][Path[i]]; break;
+        }
+        curr_dir=direction[curr_pos][Path[i]];
+        curr_pos=Path[i];
+    }
+}
+/*
+STA: start
+R90&F: quay phai 90 va tien
+L90&F:
+B&F: quay sau r tien
+R135&F: quay phai 135 do va tien
+L135&F:
+R45&F: quay trai 45 va tien
+L45&F: 
+*/
+byte pclass::SETUP(){
+    int a[2]={0,1}; // canh bo
+    int b[2]={2,3}; // canh bo
+    input_empty_edge(2,a,b);
+    createCommand(start);
+    return (length_path);
+}
+String pclass::Direction(int number){
+  return(c[number]);
+}
+byte pclass::length_of_path(int number){
+
+  return(Length[number]);
+}
+pclass path = pclass();

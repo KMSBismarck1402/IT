@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Weather App</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+</head>
+
+<body>
+    <div id="map" style="height: 500px;"></div>
+
+    <script
+        src="https://www.bing.com/api/maps/mapcontrol?key=Aq0haY4qnSm9yiExMaIXZGALnXNBSEPxGGQUeUEVF7uu7DXwxBWWjfFhFOdU3gMh"></script>
+    <script>
+        function initMap() {
+            const map = new Microsoft.Maps.Map('#map', {
+                center: new Microsoft.Maps.Location(47.6062, -122.3321),
+                zoom: 10,
+            });
+
+            const apiKey = '05421751ecd24f6e832143543230209';
+            const location = 'London';
+            const url = `https://api.worldweatheronline.com/premium/v1/weather.ashx?key=${apiKey}&q=${location}&format=json`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(data => {
+                    const lat = data.data.nearest_area.latitude;
+                    const lon = data.data.nearest_area.longitude;
+                    const temperature = data.data.current_condition[0].temp_C;
+
+                    const map = L.map('map').setView([lat, lon], 13);
+
+                    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+                        maxZoom: 18,
+                    }).addTo(map);
+
+                    L.marker([lat, lon]).addTo(map).bindPopup(`Temperature: ${temperature}°C`);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+        }
+
+        window.onload = function () {
+            initMap();
+        };
+    </script>
+</body>
+
+</html>
