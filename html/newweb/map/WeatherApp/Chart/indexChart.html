@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Chart.js Example</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.6.2/chart.min.js"></script>
+
+    <style>
+      /* CSS để căn lề phần tử có id="myForm" vào giữa */
+      #myForm {
+        display: flex; /* Sử dụng flexbox */
+        align-items: center; /* Căn giữa theo chiều dọc */
+        justify-content: center;
+      }
+
+      #myForm label,
+      #myForm input,
+      #myForm button {
+        margin: 5px;
+      }
+
+      button {
+        background-color: #007bff; /* Màu nền */
+        color: #fff; /* Màu văn bản */
+        padding: 10px 20px; /* Kích thước */
+        border: none; /* Không có viền */
+        cursor: pointer; /* Con trỏ nổi */
+      }
+
+      /* Tùy chỉnh ô input */
+      input {
+        padding: 5px;
+        border: 1px solid #ccc; /* Viền */
+        border-radius: 5px; /* Góc bo tròn */
+      }
+    </style>
+  </head>
+  <body>
+    <form id="myForm">
+      <label for="latitude">Vĩ độ: </label>
+      <input type="number" id="latitude" name="latitude" step="0.01" required />
+
+      <label for="longitude">Tung độ: </label>
+      <input
+        type="number"
+        id="longitude"
+        name="longtitude"
+        step="0.01"
+        required
+      />
+
+      <label for="dateInput">Thời gian bắt đầu: </label>
+      <input type="date" id="timeStart" name="timeStart" />
+
+      <label for="dateInput">Thời gian kết thúc: </label>
+      <input type="date" id="timeEnd" name="timeEnd" />
+
+      <button type="submit">Lấy dữ liệu</button>
+    </form>
+    <canvas id="myChart" width="400" height="170"></canvas>
+
+    <!-- Link to the script.js file -->
+    <script src="chart.js"></script>
+  </body>
+</html>

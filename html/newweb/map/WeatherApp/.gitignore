@@ -1,0 +1,5 @@
+.vscode
+node_modules
+open-meteo.com
+package-lock.json
+package.json
