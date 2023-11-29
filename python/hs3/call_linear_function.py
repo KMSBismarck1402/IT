@@ -27,7 +27,7 @@ def main():
     for var in num_vars:
         # value = float(input(f"Enter the value for {var}: "))
         user_input[var] = value[vari]
-        vari = vari+1
+        vari = vari+1 
 
     # Create a DataFrame for user input
     user_df = pd.DataFrame([user_input])
