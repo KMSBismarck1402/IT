@@ -1,0 +1,6 @@
+.aider*
+
+# Run logs
+backend/run_logs/*
+
+.env
