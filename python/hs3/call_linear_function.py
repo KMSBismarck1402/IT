@@ -6,11 +6,10 @@ import pandas as pd
 
 def main():
     # Replace 'your_data.csv' with the actual path to your CSV file
-    file_path = 'Housing_data_final(4).csv'
+    file_path = 'Housing_data_final(6).csv'
 
     # Replace with the features you want to use
-    num_vars = ['area', 'bedrooms', 'bathrooms', 'washingmachine', 'dtcenter',
-                'dtrec', 'dthospital', 'hotwater', 'ac', 'furnish', 'parking', 'security']
+    num_vars = ['area', 'bedrooms', 'bathrooms', 'washingmachine','dtcenter', 'hotwater', 'ac', 'parking', 'security']
 
     # Train the model and save it (uncomment the following line if you haven't trained the model yet)
     model, poly = train_polynomial_regression(
@@ -22,21 +21,21 @@ def main():
 
     # User input for feature values
     vari = int(0)
-    value = [70, 1, 1, 1, 0.7, 1, 0.5, 1, 1, 2, 1, 1]
-
+    value = [70, 2, 1, 1, 5, 1, 1, 1, 1]
     user_input = {}
     for var in num_vars:
-        # value = float(input(f"Enter the value for {var}: "))
+        # value = float(input())
+        # user_input[var] = value
         user_input[var] = value[vari]
         vari = vari+1
 
     # Create a DataFrame for user input
     user_df = pd.DataFrame([user_input])
-
+    # print(user_df)
     # Predict the price for the user input
     predicted_price = predict_price(model, poly, user_df)
 
-    print(f'Predicted Price: {predicted_price}')
+    print(predicted_price)
 
 
 if __name__ == "__main__":
