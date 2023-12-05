@@ -6,7 +6,7 @@ import pandas as pd
 
 def main():
     # Replace 'your_data.csv' with the actual path to your CSV file
-    file_path = 'Housing_data_final(8).csv'
+    file_path = 'Housing_data_final(9).csv'
 
     # Replace with the features you want to use
     num_vars = ['area', 'bedrooms', 'bathrooms', 'washingmachine',
@@ -22,7 +22,7 @@ def main():
 
     # User input for feature values
     vari = int(0)
-    value = [15, 2, 1, 1, 17, 1, 1, 1, 0, 2]
+    value = [25, 1, 0, 1, 10, 1, 1, 1, 0, 1]
     user_input = {}
     for var in num_vars:
         # value = float(input())
