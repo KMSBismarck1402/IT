@@ -10,7 +10,7 @@ import joblib
 def train_polynomial_regression(file_path, num_vars, poly_degree=1, save_model_path=None):
     # Load data from CSV file
     data = pd.read_csv(file_path)
-    
+
     # Define the features (independent variables) and target (dependent variable)
     X = data[num_vars]
     y = data['price']
@@ -21,7 +21,7 @@ def train_polynomial_regression(file_path, num_vars, poly_degree=1, save_model_p
 
     # Train the polynomial linear regression model
     model = LinearRegression()
-    model.fit(X_poly, y)wwwww
+    model.fit(X_poly, y)
 
     # Save the trained model to a file if a save path is provided
     if save_model_path:
