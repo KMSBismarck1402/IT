@@ -11,6 +11,18 @@ def train_polynomial_regression(file_path, num_vars, poly_degree=1, save_model_p
     # Load data from CSV file
     data = pd.read_csv(file_path)
 
+    #input data processing for price
+    #Q1 = data.price.quantile(0.25)
+    #Q3 = data.price.quantile(0.75)
+    #IQR = Q3 - Q1
+    #data = data[(data.price >= Q1 - 1.5*IQR) & (data.price <= Q3 + 1.5*IQR)]
+
+    #input data processing for area
+    #Q1 = data.area.quantile(0.25)
+    #Q3 = data.area.quantile(0.75)
+    #IQR = Q3 - Q1
+    #data = data[(data.area >= Q1 - 1.5*IQR) & (data.area <= Q3 + 1.5*IQR)]
+
     # Define the features (independent variables) and target (dependent variable)
     X = data[num_vars]
     y = data['price']
