@@ -6,11 +6,11 @@ import pandas as pd
 
 def main():
     # Replace 'your_data.csv' with the actual path to your CSV file
-    file_path = 'Housing_data_final(9).csv'
+    file_path = 'Housing_data_final(11).csv'
 
     # Replace with the features you want to use
     num_vars = ['area', 'bedrooms', 'bathrooms', 'washingmachine',
-                'dtcenter', 'hotwater', 'ac', 'parking', 'security', 'furnish']
+                'dtcenter', 'kitchen', 'ac', 'balcony', 'parking', 'furnish']
 
     # Train the model and save it (uncomment the following line if you haven't trained the model yet)
     model, poly = train_polynomial_regression(
@@ -22,7 +22,7 @@ def main():
 
     # User input for feature values
     vari = int(0)
-    value = [25, 1, 0, 1, 10, 1, 1, 1, 0, 1]
+    value = [24, 1, 1, 1, 8, 1, 1, 1, 1, 2]
     user_input = {}
     for var in num_vars:
         # value = float(input())

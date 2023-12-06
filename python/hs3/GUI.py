@@ -16,16 +16,17 @@ class App(ctk.CTk):
         self.grid_columnconfigure(1, weight=1, uniform="fred")
         self.grid_columnconfigure(2, weight=1, uniform="fred")
         self.grid_columnconfigure(3, weight=1, uniform="fred")
+        furnishvalues=["Chưa có","Cơ bản","Đầy đủ"]
+        furnish_var=tk.StringVar(self,"Chưa có")
         area_var = tk.StringVar(self, "0")
         bed_var = tk.StringVar(self, "0")
         bath_var = tk.StringVar(self, "0")
         wm_var = tk.StringVar(self, "0")
-        hw_var = tk.StringVar(self, "0")
+        kc_var = tk.StringVar(self, "0")
         ac_var = tk.StringVar(self, "0")
+        bal_var = tk.StringVar(self, "0")
         pk_var = tk.StringVar(self, "0")
-        se_var = tk.StringVar(self, "0")
         cen_var = tk.StringVar(self, "0")
-        fn_var = tk.StringVar(self, "0")
         reg = LinearRegression
 
         def submit():
@@ -33,31 +34,34 @@ class App(ctk.CTk):
             bed = int(bed_var.get())
             bath = int(bath_var.get())
             wm = int(wm_var.get())
-            hw = int(hw_var.get())
+            kc = int(kc_var.get())
             ac = int(ac_var.get())
+            bal = int(bal_var.get())
             pk = int(pk_var.get())
-            se = int(se_var.get())
             dtcen = float(cen_var.get())
-            fn = int(fn_var.get())
-            price = reg.predict(area, bed, bath, wm, dtcen, hw, ac, pk, se, fn)
+            furnish=furnish_var.get()
+            fn=furnishvalues.index(furnish)
+            price = reg.predict(area, bed, bath, wm,
+                                dtcen, kc, ac, bal, pk, fn)
 
             print("Floor area: ", area)
             print("Number of Bedroom: ", bed)
             print("Number of Bathroom: ", bath)
             print("Washing machine: ", wm)
-            print("Hot water: ", hw)
+            print("Kitchen: ", kc)
             print("AC: ", ac)
-            print("Parking: ", pk)
-            print("Security: ", se)
+            print("Parking: ", bal)
+            print("Security: ", pk)
             print("Predicted price: ", price)
 
             # Output
             self.outputlabel = ctk.CTkLabel(self, text="Giá Trọ Dự Đoán")
             self.outputlabel.grid(
                 row=12, column=1, padx=20, pady=15, sticky="ew")
-            self.price = ctk.CTkLabel(self, text=price)
+            self.price = ctk.CTkLabel(self, text=f'{price:,}'+' Đồng')
             self.price.grid(row=12, column=2, padx=20,
                             pady=15, sticky="ew")
+
 
 # App title
         self.title("Ứng Dụng Dự Đoán Giá Nhà Trọ")
@@ -95,13 +99,10 @@ class App(ctk.CTk):
                                columnspan=2, sticky="ew")
 
 # Furnish Label
-        self.FurnishLabel = ctk.CTkLabel(self, text="Mức độ nội thất")
-        self.FurnishLabel.grid(row=4, column=0, padx=20, pady=15,
-                               sticky="ew")
-        self.FurnishMenu = ctk.CTkOptionMenu(self, values=["0", "1", "2"],
-                                             variable=fn_var)
-        self.FurnishMenu.grid(row=4, column=1, padx=20, pady=15,
-                              columnspan=2, sticky="ew")
+        self.FurnishLabel = ctk.CTkLabel(self, text="Nội Thất")
+        self.FurnishLabel.grid(row=4, column=0, padx=20, pady=15, sticky="ew")
+        self.FurnishMenu = ctk.CTkOptionMenu(self,values=furnishvalues, variable=furnish_var)
+        self.FurnishMenu.grid(row=4, column=1, padx=20, pady=15, columnspan=2, sticky="ew")
 
 # Utilities Label
         self.choiceLabel = ctk.CTkLabel(self, text="Tiện Nghi")
@@ -115,9 +116,9 @@ class App(ctk.CTk):
         self.wmchoice.grid(row=5, column=1, padx=20, pady=15,
                            sticky="ew")
 
-        self.hwchoice = ctk.CTkCheckBox(self, text="Nước nóng",
-                                        variable=hw_var, onvalue="1", offvalue="0")
-        self.hwchoice.grid(row=5, column=2, padx=20, pady=15,
+        self.hwchoice = ctk.CTkCheckBox(self, text="Nhà bếp",
+                                        variable=kc_var, onvalue="1", offvalue="0")
+        self.hwchoice.grid(row=5, column=2, padx=2, pady=15,
                            sticky="ew")
 
         # row 6
@@ -126,14 +127,14 @@ class App(ctk.CTk):
         self.acchoice.grid(row=6, column=1, padx=20, pady=15,
                            sticky="ew")
 
-        self.pkchoice = ctk.CTkCheckBox(self, text="Bãi giữ xe",
-                                        variable=pk_var, onvalue="1", offvalue="0")
-        self.pkchoice.grid(row=6, column=2, padx=20, pady=15,
+        self.pkchoice = ctk.CTkCheckBox(self, text="Ban công/ cửa sổ",
+                                        variable=bal_var, onvalue="1", offvalue="0")
+        self.pkchoice.grid(row=6, column=2, padx=2, pady=15,
                            sticky="ew")
 
         # row 7
-        self.sechoice = ctk.CTkCheckBox(self, text="Bảo vệ",
-                                        variable=se_var, onvalue="1", offvalue="0")
+        self.sechoice = ctk.CTkCheckBox(self, text="Bãi giữ xe",
+                                        variable=pk_var, onvalue="1", offvalue="0")
         self.sechoice.grid(row=7, column=1, padx=20, pady=15,
                            sticky="ew")
 # Utilities Label
