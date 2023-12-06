@@ -16,8 +16,8 @@ class App(ctk.CTk):
         self.grid_columnconfigure(1, weight=1, uniform="fred")
         self.grid_columnconfigure(2, weight=1, uniform="fred")
         self.grid_columnconfigure(3, weight=1, uniform="fred")
-        furnishvalues=["Chưa có","Cơ bản","Đầy đủ"]
-        furnish_var=tk.StringVar(self,"Chưa có")
+        furnishvalues = ["Chưa có", "Cơ bản", "Đầy đủ"]
+        furnish_var = tk.StringVar(self, "Chưa có")
         area_var = tk.StringVar(self, "0")
         bed_var = tk.StringVar(self, "0")
         bath_var = tk.StringVar(self, "0")
@@ -39,8 +39,8 @@ class App(ctk.CTk):
             bal = int(bal_var.get())
             pk = int(pk_var.get())
             dtcen = float(cen_var.get())
-            furnish=furnish_var.get()
-            fn=furnishvalues.index(furnish)
+            furnish = furnish_var.get()
+            fn = furnishvalues.index(furnish)
             price = reg.predict(area, bed, bath, wm,
                                 dtcen, kc, ac, bal, pk, fn)
 
@@ -101,8 +101,10 @@ class App(ctk.CTk):
 # Furnish Label
         self.FurnishLabel = ctk.CTkLabel(self, text="Nội Thất")
         self.FurnishLabel.grid(row=4, column=0, padx=20, pady=15, sticky="ew")
-        self.FurnishMenu = ctk.CTkOptionMenu(self,values=furnishvalues, variable=furnish_var)
-        self.FurnishMenu.grid(row=4, column=1, padx=20, pady=15, columnspan=2, sticky="ew")
+        self.FurnishMenu = ctk.CTkOptionMenu(
+            self, values=furnishvalues, variable=furnish_var)
+        self.FurnishMenu.grid(row=4, column=1, padx=20,
+                              pady=15, columnspan=2, sticky="ew")
 
 # Utilities Label
         self.choiceLabel = ctk.CTkLabel(self, text="Tiện Nghi")
@@ -138,7 +140,7 @@ class App(ctk.CTk):
         self.sechoice.grid(row=7, column=1, padx=20, pady=15,
                            sticky="ew")
 # Utilities Label
-        self.choiceLabel = ctk.CTkLabel(self, text="Khoản cách (km)")
+        self.choiceLabel = ctk.CTkLabel(self, text="Khoảng cách (km)")
         self.choiceLabel.grid(row=8, column=0, padx=20, pady=15,
                               sticky="ew")
 # Distance Entry
