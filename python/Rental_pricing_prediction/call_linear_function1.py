@@ -8,7 +8,7 @@ class LinearRegression:
 
     def predict(area, bed, bath, wm, dtcen, kc, ac, bal, pk, fn):
         # Replace 'your_data.csv' with the actual path to your CSV file
-        file_path = 'Housing_data_final(11).csv'
+        file_path = 'Housing_data_final(10).csv'
 
         # Replace with the features you want to use
         num_vars = ['area', 'bedrooms', 'bathrooms', 'washingmachine',
