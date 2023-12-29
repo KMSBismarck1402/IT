@@ -1,0 +1,14 @@
+typedef struct sinhvien
+{
+
+	string mssv;
+	char tensv[20];
+	char sex;
+	float diemkt1;
+	float diemkt2;
+	float diemcc;
+	float diemgk;
+	float diemck;
+	float tongdiem;
+
+};
