@@ -1,0 +1,147 @@
+.brainstorm {
+  /* height: 100vh; */
+  padding: calc(var(--header-height) + 1rem) 0 !important;
+  background-color: #ffc46f;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.brainstorm__data {
+  /* padding-bottom: 3.5rem; */
+}
+.brainstorm__title {
+  font-size: var(--h1-font-size);
+  line-height: 140%;
+  margin-bottom: var(--mb-2);
+  text-transform: uppercase;
+  font-weight: 800;
+  color: #fff;
+  text-align: center;
+}
+.brainstorm__bq {
+  margin-top: var(--mb-2);
+  font-size: var(--h2-font-size);
+  line-height: 140%;
+  font-weight: 400;
+  color: #fff;
+}
+.brainstorm__container {
+  display: flex;
+  height: 100%;
+  max-width: 100% !important;
+  align-items: center;
+  justify-items: center;
+  background-color: #fff;
+  /* width: 90%; */
+  /* max-width: auto !important; */
+  padding: 3em 0.5em;
+  border-radius: 0.8em;
+  justify-content: center;
+}
+.brainstorm__draggable-objects,
+.brainstorm__drop-points {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+  padding: 2em;
+  justify-items: center;
+}
+.brainstorm__draggable-image {
+  width: 12em;
+  cursor: move;
+}
+.brainstorm__draggable-image img,
+.brainstorm__card.dropped img {
+  width: 12em;
+  border-radius: 0.5em;
+  filter: drop-shadow(0 0.3em 0.9em rgba(0, 0, 0, 0.25));
+}
+.brainstorm__card {
+  width: 14em;
+  height: 14em;
+  text-align: center;
+  padding: 1rem;
+  display: flex;
+  border: 0.25em dashed #010c39;
+  border-radius: 0.8em;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.dropped {
+  padding: 0;
+  background-color: #e5ffc8;
+}
+.brainstorm__controls {
+  position: relative;
+  display: flex;
+  top: 50%;
+  flex-direction: column;
+  align-items: center;
+}
+
+.brainstorm__controls button {
+  margin-bottom: 1rem;
+  font-size: 1.12em;
+  padding: 0.8em 1em;
+  border-radius: 0.5rem;
+  border: none;
+  outline: none;
+  color: #010c39;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+}
+.brainstorm__controls p {
+  color: #ffffff;
+  font-size: var(--h3-font-size);
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.hide {
+  display: none;
+}
+@media screen and (max-width: 1200px) {
+  .brainstorm__draggable-image img,
+  .brainstorm__card.dropped img {
+    width: 8em;
+  }
+  .brainstorm__card {
+    width: 12em;
+    height: 12em;
+  }
+  .brainstorm__draggable-image {
+    width: auto;
+  }
+  .brainstorm__container {
+    display: block !important;
+    /* max-width: 37.5em !important; */
+  }
+}
+@media screen and (max-width: 750px) {
+  .brainstorm__bq {
+    padding: 0 1rem;
+  }
+  .brainstorm__card {
+    font-size: 0.8rem;
+    width: 6em;
+    height: 6em;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  .brainstorm__draggable-image {
+    width: auto;
+  }
+  .brainstorm__draggable-image img,
+  .brainstorm__card.dropped img {
+    width: 6em;
+  }
+  .brainstorm__card {
+    font-size: 0.8rem;
+  }
+  .brainstorm__card {
+    width: 6em;
+    height: 6em;
+  }
+}

@@ -1,0 +1,73 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap');
+
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+/* <!--=============== BACKGROUND ===============--> */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    background-image: url(baolongdev.svg);
+    background-size: cover;
+    background-position: center;
+    width: 976.7857px;
+    height: 550px;
+    position: relative;
+
+    border-radius: 20px;
+}
+
+/* =============== Text =============== */
+a,
+a:hover {
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.me-type:hover {
+    color: #000 !important;
+}
+
+.center {
+    color: white;
+    /* letter-spacing: 5px; */
+    margin-top: 140px;
+}
+
+.typewriter {
+    font-weight: bold;
+    font-size: 28px;
+    font-family: 'Courgette', cursive;
+}
+
+/* add custom cursor */
+.typewriter::after {
+    content: "|";
+    display: inline;
+    animation: blink 1s infinite;
+}
+
+/* custom cursor animation */
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

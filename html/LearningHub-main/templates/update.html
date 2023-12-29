@@ -1,0 +1,98 @@
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<title>User Update </title>
+
+</head>
+<style>
+	.hi{
+		color: green;
+	}
+	.ok{
+		display: block;
+		margin-left: 80px;
+		margin-top: -15px;
+		border: 1px solid black;
+	}
+	.gfg{
+		margin-left: 30px;
+		font-weight: bold;
+	}
+	.gf{
+		margin-left: 10px;
+		font-weight: bold;
+	}
+	.btn{
+		margin-top: 20px;
+		width: 80px;
+		height: 25px;
+		background-color: orangered;
+		color: white;
+	}
+	.y{
+		color: gray;
+	}
+</style>
+<body>
+<div class="container">
+	<h2 class="hi" > GFG User Update </h2>
+	<h4 class="y" >Note : fill following details !</h4>
+	<form id="loginform" method="post">
+		{% if message is defined and message %}
+			<div class="alert alert-warning"> <strong> {{ message }} ???? </strong></div>
+		{% endif %}
+		<br>
+		<div class="form-group">
+			<label class="gfg">Name:</label>
+			<input class="ok" type="text" class="form-control" id="userid" name="userid" placeholder="userid">
+		</div>
+
+		<div class="form-group">
+			<label class="gfg">Name:</label>
+			<input class="ok" type="text" class="form-control" id="username" name="username" placeholder="Enter new user name" >
+		</div>
+<!--		<div class="form-group">-->
+<!--			<label class="gfg">Email:</label>-->
+<!--			<input class="ok" type="email" class="form-control" id="email" name="email" placeholder="Enter email" name="email">-->
+<!--		</div>-->
+		<div class="form-group">
+			<label class="gf">Password:</label>
+		<input class="ok" type="password" class="form-control" id="password" name="password" placeholder="Enter new password" >
+		</div>
+		<button class="btn" type="submit" class="btn btn-primary">Submit</button>
+
+	</form>
+</div>
+<script>
+			$(document).ready(function() {
+				$("#loginform").on("submit", function(event) {
+					alert("Form submit");
+
+					var userid = $("#userid").val();
+					var username = $("#username").val();
+					var password = $("#password").val();
+
+					let url = `/api_update`;
+					$.ajax({
+						data: {
+							username: username,
+							userid: userid,
+							password: password,
+						},
+						type: "GET",
+						url: url,
+					}).done(function(data) {
+
+						console.log(data);
+						alert(data)
+					});
+					event.preventDefault();
+				});
+			});
+
+
+		</script>
+</body>
+</html>
