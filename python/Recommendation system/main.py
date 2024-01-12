@@ -57,21 +57,7 @@ def get_top_recommendations(user_predictions_df, userID, top_n=10):
     return top_n_recommendations
 
 # Example usage:
-while True:
-    user_input = input("Enter userID to predict (enter 0 to stop): ")
-
-    # Check if the input is numeric
-    if user_input.isdigit():
-        userID_to_predict = int(user_input)
-
-        # Check if the entered userID is valid
-        if userID_to_predict in user_predictions_df.index:
-            top_recommendations = get_top_recommendations(user_predictions_df, userID_to_predict)
-            print(f'Top recommendations for userID {userID_to_predict}:\n{top_recommendations}')
-        elif userID_to_predict == 0:
-            print("Program stopped.")
-            break
-        else:
-            print("Invalid userID. Please enter a valid userID.")
-    else:
-        print("Invalid input. Please enter a numeric value.")
+user_input = input("Enter userID to predict (enter 0 to stop): ")
+userID_to_predict = int(user_input)
+top_recommendations = get_top_recommendations(user_predictions_df, userID_to_predict)
+print(f'Top recommendations for userID {userID_to_predict}:\n{top_recommendations}')
