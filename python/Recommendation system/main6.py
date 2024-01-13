@@ -1,18 +1,22 @@
 import pandas as pd
 import numpy as np
+import matplotlib.pyplot as plt
 
 file_ratings_path = "data/movies/ratings.csv"
-
-# Read ratings data
 rating = pd.read_csv(file_ratings_path)
+df=rating
 
 def create_user_movie_df(dataframe):
     # comment
     comment_counts = pd.DataFrame(dataframe["movieId"].value_counts())
+    # print(comment_counts.head(20))
+
     # rare movies
-    rare_movies = comment_counts[comment_counts["movieId"] <= 1000].index
+    rare_movies = comment_counts[comment_counts["movieId"] >= 1000].index
+    # print(rare_movies)
     
-    common_movies = dataframe[~dataframe["movieId"].isin(rare_movies)]
+    common_movies = df[~df["movieId"].isin(rare_movies)]
+    # common_movies = df
     user_movie_df = common_movies.pivot_table(index=["userId"], columns=["movieId"], values="rating")
     return user_movie_df
 
@@ -44,48 +48,53 @@ def user_based_recommender(random_user, user_movie_df, ratio=60, cor_th=0.65, sc
                           random_user_df[movies_watched]])
     # print(final_df.head())
     corr_df = final_df.T.corr().unstack().sort_values().drop_duplicates()
+    # print(corr_df)
     corr_df = pd.DataFrame(corr_df, columns=["corr"])
     corr_df.index.names = ['user_id_1', 'user_id_2']
     corr_df = corr_df.reset_index()
-    # print(corr_df.head())
-
+    # print(corr_df.head)
+    # print(corr_df)
+    # print(corr_df[(corr_df["user_id_1" ] == random_user) & (corr_df["corr"] >= cor_th)])
+    
     top_users = corr_df[(corr_df["user_id_1"] == random_user) & (corr_df["corr"] >= cor_th)][
-        ["user_id_2", "corr"]].reset_index(drop=True)
+        ["user_id_2", "corr"]].reset_index(drop=True) # select similar users have correlation over cor_th on random_user
+    # print(top_users)
     top_users = top_users.sort_values(by='corr', ascending=False)
     top_users.rename(columns={"user_id_2": "userId"}, inplace=True)
+    rating = pd.read_csv(file_ratings_path)
     top_users_ratings = top_users.merge(rating[["userId", "movieId", "rating"]], how='inner')
     # ===== Tính điểm đề xuất trung bình có trọng số ===== #
-    if not top_users_ratings.empty:
-        top_users_ratings['weighted_rating'] = top_users_ratings['corr'] * top_users_ratings['rating']
-        # print(top_users_ratings.head())
+    top_users_ratings['weighted_rating'] = top_users_ratings['corr'] * top_users_ratings['rating']
+    # print(top_users_ratings.head())
+    # print(top_users_ratings.groupby('movieId').agg({"weighted_rating": "mean"}).head())
+    
+    # ===== Thuật toán đề xuất film ===== #
+    recommendation_df = top_users_ratings.groupby('movieId').agg({"weighted_rating": "mean"})
+    recommendation_df = recommendation_df.reset_index()
+    # print(recommendation_df)
+    # print(recommendation_df[recommendation_df["weighted_rating"] > 3.5])
+    movies_to_be_recommend = recommendation_df[recommendation_df["weighted_rating"] > score].sort_values("weighted_rating", ascending=False)
 
-        # ===== Thuật toán đề xuất film ===== #
-        recommendation_df = top_users_ratings.groupby('movieId').agg({"weighted_rating": "mean"})
-        recommendation_df = recommendation_df.reset_index()
-        # print(recommendation_df)
-        # print(recommendation_df[recommendation_df["weighted_rating"] > 3.5])
-        movies_to_be_recommend = recommendation_df[recommendation_df["weighted_rating"] > score].sort_values("weighted_rating", ascending=False)
+    return movies_to_be_recommend
 
-        return movies_to_be_recommend
-    else:
-        print("No similar users found for recommendations.")
-        return pd.DataFrame()
+def ShowAnswer(UserID = 0, cor_th = 0.70, score = 4):
+  print("=============== Thông tin ===============")
+  print("                                         ")
+  print(f"Users ID: \t {UserID}")
+  print(f"Score : \t {score}")
+  print(f"cor_th: \t {cor_th}")
+  print("                                         ")
+  print("=========== Phim được đề xuất ===========")
+  print("                                         ")
+  print(user_based_recommender(UserID, user_movie_df, cor_th=cor_th, score=score))
 
-def ShowAnswer(UserID=0, cor_th=0.70, score=4):
-    print("=============== Thông tin ===============")
-    print("                                         ")
-    print(f"Users ID: \t {UserID}")
-    print(f"Score : \t {score}")
-    print(f"cor_th: \t {cor_th}")
-    print("                                         ")
-    print("=========== Phim được đề xuất ===========")
-    print("                                         ")
-    print(user_based_recommender(UserID, user_movie_df, cor_th=cor_th, score=score))
-
-random_user = 1231
-score = 4
-cor_th = 0.9
+# @markdown ---
+# @markdown ### Nhập dữ liệu:
+random_user = 1231  # @param {type:"number"}
+score = 4 # @param {type:"slider", min:1, m67ax:5, step:0.5}
+cor_th = 0.9 # @param {type:"slider", min:0.5, max:1, step:0.1}
 if random_user == 0:
-    random_user = int(pd.Series(user_movie_df.index).sample(1).values)
+  random_user = int(pd.Series(user_movie_df.index).sample(1).values)
+# @markdown ---
 
 ShowAnswer(UserID=random_user, cor_th=cor_th, score=score)
