@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html>
+<head>
+	
+	<!-- Meta -->
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, minimal-ui, viewport-fit=cover">
+	<meta name="theme-color" content="#2196f3">
+	<meta name="author" content="DexignZone" /> 
+    <meta name="keywords" content="" /> 
+    <meta name="robots" content="" /> 
+	<meta name="description" content="AppZilla - Multipurpose React Native Mobile App Template"/>
+	<meta property="og:title" content="AppZilla - Multipurpose React Native Mobile App Template" />
+	<meta property="og:description" content="AppZilla - Multipurpose React Native Mobile App Template" />
+	<meta property="og:image" content="https://appzilla.dexignzone.com/reactnative/social-image.png"/>
+	<meta name="format-detection" content="telephone=no">
+	
+	<!-- Favicons Icon -->
+	<link rel="shortcut icon" type="image/x-icon" href="images/favicon.png" />
+    
+    <!-- Title -->
+	<title>AppZilla - Multipurpose React Native Mobile App Template</title>
+	
+	<!-- Css Style -->
+	<link rel="stylesheet" href="css/bootstrap.css">
+	<link rel="stylesheet" href="plugins/jstree/dist/themes/default/style.min.css">
+	<link rel="stylesheet" href="css/scrollbar.css">
+	<link rel="stylesheet" href="css/font-awesome.css">
+	<link rel="stylesheet" href="css/styles.css">
+	
+	<!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200;300;400;600;700;800;900&family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	
+</head>
+<body data-spy="scroll" data-target=".nav-bar" data-offset="50">
+<div class="wrapper" id="tableofcontent">
+
+	<!-- Sidebar Holder -->
+	<nav id="nevbarleft">
+		<div class="side-nav full-height">
+			<div class="sidebar-header">
+				<div class="main-logo">
+					<img class="icon" src="images/logo.png" alt="logo"/>
+					<div class="logo-text">
+						<span class="text">AppZilla</span>
+					</div>
+				</div>
+			</div>
+			<div class="nav-bar">
+				<ul class="list-unstyled content-scroll components navbar-nav nav" id="download-button">
+					<li class="active"><a href="#introduction">Introduction</a></li>
+					<li><a href="#installation">Installation</a></li>
+					<li><a href="#folder_directories">Folder Directories</a></li>
+					<li><a href="#source_structure">Source Structure</a></li>
+					<li><a href="#theme">Theme</a></li>
+					<li><a href="#appname_icon">App Name & Icon</a></li>
+					<li><a href="#package_name">Package Name</a></li>
+					<li><a href="#setup_firebase">Setup Firebase</a></li>
+					<li><a href="#our_product">Our Products </a></li>
+					<li><a href="#custom_work">Custom Work Requirements </a></li>
+					<li><a href="#version_history">Version History</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+	
+	<!-- Page Content Holder -->
+	<div id="content">
+		
+		<!-- Navber -->
+		<nav class="navbar navbar-default top-nav-bar ">
+			<div class="container-fluid">
+				<div class="navbar-header">
+				   <button type="button" id="sidebarCollapse" class="navbar-btn">
+						<span></span>
+						<span></span>
+						<span></span>
+					</button>
+				</div>
+				<a href="https://support.w3itexperts.com/" target="_blank" class="site-button support-button">Support</a>
+				<a href="https://codecanyon.net/user/dexignzone/portfolio" target="_blank" class="site-button support-button">Buy Now</a>
+			</div>
+		</nav>
+		
+		<!-- Banner -->
+		<section class="app-brief slide-banner">
+			<div class="container">
+				<div class="section-header">
+					<h2>AppZilla - Multipurpose Mobile Template</h2>
+					<div class="colored-line"></div>
+					<div class="section-description">
+						AppZilla - Multipurpose React Native Mobile App Template ( React navigation + Firebase )
+					</div>
+					<div class="colored-line"></div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Introduction -->
+		<section class="app-brief" id="introduction">
+			<div class="container center-align">
+				<h1>AppZilla</h1>
+				<h3>AppZilla - Multipurpose React Native App Template ( React navigation + Firebase )</h3>
+				<p>This documentation is last updated on 26 May 2023.</p>
+				<p>Thank you for purchasing this Mobile App template.</p>
+				<p><strong>If you like this template, Please support us by rating this template with 5 stars </strong> </p>
+			</div>
+		</section>
+		<hr/>
+		
+		<!-- Installation -->
+		<section class="app-brief" id="installation">
+			<div class="container left-align">
+				<div class="section-header">
+					<h2 class="dark-text title">Installation - </h2>
+				</div>
+				<div class="sass-compile">
+					<h3 class="title"><strong>Android</strong><h3>
+				
+					<h3 class="title">1.- Install Node.js</h3>
+					<p>To run React Native app via the command line first, we need to install <a href="https://nodejs.org/en/" target="_blank">node.js</a>. The easiest way is downloading it from the official website nodejs.org open the package and follow the wizard.</p>
+					
+					<h3 class="title">2. Install node modules</h3>
+					<p>To install React Native packages run following command.</p>
+<pre class="brush: javascript; h-100">npm install
+</pre>
+					<h3 class="title">3. Link fonts and resource icons</h3>
+					<p>To Link fonts and resource icons run following command.</p>
+<pre class="brush: javascript; h-100">npx react-native-asset
+</pre>
+					<h3 class="title">4. Start a development server</h3>
+					<p>To run React Native app run following command.</p>
+<pre class="brush: javascript; h-100">npx react-native start
+</pre>
+
+					<p>Using your <a href="https://developer.android.com/studio" class="text-primary">Android Studio</a> (4.0.1 or last version) and build project with folder <code>.source/android</code></p>
+					
+					<img src="images/screenshot/android-studio.png" alt=""/>
+					<br/>
+					<br/>
+					<p>After then please do following steps below</p>
+					<ul class="list-style-1">
+						<li>Step 1: ADM Manager – Install your virtual devices for use</li>
+						<li>Step 2: Sync project with Gradle files</li>
+						<li>Step 3: <code>Clean project</code> after Sync project</li>
+						<li>Step 4: Select virtual device and Run your application</li>
+					</ul>
+					<br/>
+					<iframe style="width:100%;height:600px" src="https://www.youtube.com/embed/dvPBzlvpGV8" title="Soziety Android Application Full Installation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					
+					<h3 class="title">To Run Other App ( Classified App , Dating App , Food App etc. ) -</h3>
+					<p>following below steps.</p>
+					<h3 class="title"><strong>Step - 1</strong></h3>
+					<p>Open Folder locate: <code>./apps/..</code></p>
+					<p>Choose any app you want to run</p>
+					<p>Folder locate: <code>./apps/classified_app/..</code></p>
+					<p>then copy following folders.</p>
+					<ul class="list-style-1">
+						<li>assets</li>
+						<li>constants</li>
+						<li>pages</li>
+					</ul>
+					<img src="images/screenshot/package1.png" alt="">
+					<h3 class="title"><strong>Step - 2</strong></h3>
+					<p>Then open</p>
+					<p>Folder locate: <code>./app/..</code></p>
+					<p>and replace with these folders.</p>
+					<img src="images/screenshot/package2.png" alt="">
+					<h3 class="title"><strong>Step - 3</strong></h3>
+					<p>After complete above steps <code>Restart app</code>.</p>
+					<iframe style="width:100%;height:600px" src="https://www.youtube.com/embed/HSVrfRWX1OM" title="Soziety Android Application Full Installation" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+					
+					<br/>
+					<br/>
+					
+					<h3 class="title"><strong>IOS</strong><h3>
+					<h3 class="title">1.- Install Node.js</h3>
+					<p>To run React Native app via the command line first, we need to install <a href="https://nodejs.org/en/" target="_blank" class="text-primary">node.js</a>. The easiest way is downloading it from the official website nodejs.org open the package and follow the wizard.</p>
+					
+					<h3 class="title">2. Install node modules</h3>
+					<p>To install React Native packages run following command.</p>
+<pre class="brush: javascript; h-100">
+cd ./source
+npm install
+</pre>
+					<h3 class="title">3. Install Pods</h3>
+					<p>To install React Native ios Pods run following command.</p>
+<pre class="brush: javascript; h-100">
+cd ./source/ios
+pod install
+</pre>
+					<h3 class="title">4. Start a development server</h3>
+					<p>To run React Native app run following command.</p>
+<pre class="brush: javascript; h-100">npx react-native start
+</pre>
+
+					<p>Using your <a target="_blank" href="https://developer.apple.com/xcode/" class="text-primary">Xcode</a> and build project with folder <code>.source/ios</code></p>
+					
+					<img src="images/screenshot/xcode-install.png" alt=""/>
+				</div>
+			</div>
+		</section>
+		<hr/>
+		
+		<!-- Folder Directories -->
+		<section class="app-brief" id="folder_directories">
+			<div class="container left-align">
+				<div class="section-header ">
+					<h2 class="dark-text title">Folder Directories - </h2>
+				</div>
+				<div id="dz_tree" class="tree-demo">
+					<ul>
+						<li data-jstree='{ "opened" : true }'>Package
+							<ul>
+                                <li data-jstree='{ "opened" : false }'>__tests__
+                                    <ul>
+                                        <li data-jstree='{ "type" : "file" }'>App-test.js</li>
+                                    </ul>    
+                                </li>
+								<li data-jstree='{ "opened" : false }'>.bundle </li>
+								<li data-jstree='{ "opened" : false }'>android</li>
+								<li data-jstree='{ "opened" : true }'>app
+									<ul>
+                                        <li data-jstree='{ "opened" : "false" }'>assets</li>
+                                        <li data-jstree='{ "opened" : "false" }'>components</li>
+                                        <li data-jstree='{ "opened" : "false" }'>constants</li>
+                                        <li data-jstree='{ "opened" : "false" }'>helper</li>
+                                        <li data-jstree='{ "opened" : "false" }'>layout</li>
+                                        <li data-jstree='{ "opened" : "false" }'>Navigations</li>
+                                        <li data-jstree='{ "opened" : "false" }'>pages</li>
+                                        <li data-jstree='{ "opened" : "false" }'>Redux</li>
+                                        <li data-jstree='{ "opened" : "false" }'>Screens</li>
+                                        <li data-jstree='{ "opened" : "false" }'>Service</li>
+                                        <li data-jstree='{ "opened" : "false" }'>Utils</li>
+                                    </ul>   
+								</li>
+								<li data-jstree='{ "opened" : true }'>apps
+									<ul>
+										<li data-jstree='{ "opened" : "true" }'>classified_app
+											<ul>
+												<li data-jstree='{ "opened" : "false" }'>assets</li>
+												<li data-jstree='{ "opened" : "false" }'>pages</li>
+											</ul>
+										</li>
+										<li data-jstree='{ "opened" : "false" }'>dating_app</li>
+										<li data-jstree='{ "opened" : "false" }'>education_app</li>
+										<li data-jstree='{ "opened" : "false" }'>food_app</li>
+										<li data-jstree='{ "opened" : "false" }'>grocery_app</li>
+										<li data-jstree='{ "opened" : "false" }'>linkdin_app</li>
+										<li data-jstree='{ "opened" : "false" }'>newsblog_app</li>
+										<li data-jstree='{ "opened" : "false" }'>social_app</li>
+										<li data-jstree='{ "opened" : "false" }'>taskmanager_app</li>
+										<li data-jstree='{ "opened" : "false" }'>youtube_app</li>
+									</ul>
+								</li>
+								<li data-jstree='{ "opened" : false }'>ios</li>
+                                <li data-jstree='{ "type" : "file" }'>.buckconfig</li>
+                                <li data-jstree='{ "type" : "file" }'>.eslintrc.js</li>
+                                <li data-jstree='{ "type" : "file" }'>.flowconfig</li>
+                                <li data-jstree='{ "type" : "file" }'>.gitignore</li>
+                                <li data-jstree='{ "type" : "file" }'>.prettierrc.js</li>
+                                <li data-jstree='{ "type" : "file" }'>.ruby-version</li>
+                                <li data-jstree='{ "type" : "file" }'>.watchmanconfig</li>
+                                <li data-jstree='{ "type" : "file" }'>App.js</li>
+                                <li data-jstree='{ "type" : "file" }'>app.json</li>
+                                <li data-jstree='{ "type" : "file" }'>babel.config.js</li>
+                                <li data-jstree='{ "type" : "file" }'>Gemfile</li>
+                                <li data-jstree='{ "type" : "file" }'>index.js</li>
+                                <li data-jstree='{ "type" : "file" }'>metro.config.js</li>
+                                <li data-jstree='{ "type" : "file" }'>package-lock.json</li>
+                                <li data-jstree='{ "type" : "file" }'>package.json</li>
+                                <li data-jstree='{ "type" : "file" }'>react-native.config.js</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</section>
+		<hr/>
+		
+        
+		<section class="app-brief" id="source_structure">
+			<div class="container left-align">
+				<div class="section-header">
+					<h2 class="dark-text title">Source Structure - </h2>
+				</div>
+				<div>
+					<img src="images/screenshot/theme.png" alt=""/>
+					<h3>Constants Files</h3>
+					<p>File locate: <code>./app/constants/..</code></p>
+					<ul class="list-style-1">
+						<li>Theme color for app</li>
+						<li>images use for the app</li>
+						<li>Icons & Fonts use for the app</li>
+					</ul>
+					<br/>
+					<h3>Components</h3>
+					<p>File locate: <code>./app/components/..</code></p>
+					<p>Common components that could be used many times in your app:</p>
+					<ul class="list-style-1">
+						<li>CustomButton.js</li>
+						<li>MsgComponent.js</li>
+						<li>Post.js</li>
+						<li>Stories.js</li>
+						<li>LikeBtn.js</li>
+						<li>SearchContent.js etc.</li>
+					</ul>
+					<!-- <br/>
+					<h3>Navigation</h3>
+					<p>File locate: <code>./app/Navigations/..</code></p>
+					<img src="images/screenshot/navigation.png" alt=""/>
+					<br/>
+					<br/>
+					<ul class="list-style-1">
+						<li>Define first loading screen here.</li>
+						<li>You can add bottom Navigation Screen in <code>./Navigations/BottomNavigation.js</code>.</li>
+					</ul> -->
+
+					<!-- <br/>
+					<h3>Screens</h3>
+					<p>File locate: <code>./app/Screens/..</code></p>
+					<p>Then navigation has defined in <code>./app/Navigations/StackNavigator.js</code> will link with screens locate in folder <code>./app/Screens/..</code></p>
+					<p>App all screens design are locate in here  <code>(./app/screens/..).</code> You could change or re-structure by matching with your own project structure design.</p>
+					<br/>
+					<h3>Assets</h3>
+					<p>File locate: <code>./app/assets/..</code></p>
+					<p>You can store images or other file resource in this folder</p> -->
+
+					<br/>
+
+					<h3>Apps</h3>
+					<p>File locate: <code>./package/apps/..</code></p>
+					<img src="images/screenshot/apps.png" alt="packages">
+					<p>Here is your all packages (Classified , Dating , Education , Food , Grocery , News&Blog , SystemPack) screens.</p>
+
+					<br/>
+					<h3>Redux</h3>
+					<p>File locate: <code>./app/Redux/..</code></p>
+					<ul class="list-style-1">
+						<li><code>./reducer/index.js</code></li>
+						<li><code>./reducer/user.js</code></li>
+						<li><code>./Store/index.js</code></li>
+					</ul>
+					<img src="images/screenshot/redux.png" alt=""/>
+					<p>React native app login & authentication manged here.</p>
+					<br/>
+
+					<h3>Utils</h3>
+					<p>File locate: <code>./app/Utils/..</code></p>
+					<img src="images/screenshot/storage.png" alt=""/>
+					<p>Commons function for store user data in <code>@react-native-async-storage/async-storage</code>will be put here, So if you develop or add more common functions, just add it here !</p>
+				</div>
+			</div>
+		</section>
+		<hr/>
+		
+		<section class="app-brief" id="theme">
+			<div class="container left-align">
+				<div class="section-header">
+					<h2 class="dark-text title">Theme - </h2>
+				</div>
+				<div>
+					<h3>Font Family</h3>
+					<p>The default font family name <code>“Poppins” & "NunitoSans"</code> are being used for this template. If you need change or a custom font to be the prettiest? You’ll need the .ttf files for all supported styles (thin, ultraLight, light, regular, medium, semibold, bold, heavy, black …). Here are the few steps you need to add it.</p>
+					<p>Add more font family in folder <code>./app/assets/fonts/..</code></p>
+					<img src="images/screenshot/fonts.png" alt=""/>
+					<br/>
+					<p>After added new font, open your terminal and run</p>
+<pre class="brush: javascript; h-100">npx react-native-asset
+</pre>
+					<br/>
+					<h3>Color</h3>
+					<p>The template are using color palette following format below.</p>
+					<ul class="color-list">
+						<li>
+							<div class="overlay-text color-primary">Primary</div>
+						</li>
+						<li>
+							<div class="overlay-text color-primary2">Primary 2</div>
+						</li>
+						<li>
+							<div class="overlay-text color-primary3">Primary 3</div>
+						</li>
+						<li>
+							<div class="overlay-text color-primary4">Primary 4</div>
+						</li>
+						<li>
+							<div class="overlay-text color-primary5">Primary 5</div>
+						</li>
+						<li>
+							<div class="overlay-text color-primarylight text-black">Primay Light</div>
+						</li>
+						<li>
+							<div class="overlay-text color-secondary">Secondary</div>
+						</li>
+						<li>
+							<div class="overlay-text color-success">Success</div>
+						</li>
+						<li>
+							<div class="overlay-text color-danger">Danger</div>
+						</li>
+						<li>
+							<div class="overlay-text color-text">Text</div>
+						</li>
+						<li>
+							<div class="overlay-text color-textlight">Text Light</div>
+						</li>
+						<li>
+							<div class="overlay-text color-title">Title</div>
+						</li>
+						<li>
+							<div class="overlay-text color-border text-black">Border Color</div>
+						</li>
+					</ul>
+					<p>You can change the theme prop dynamically and all the components will automatically update to reflect the new theme. Open file <code>./app/constants/theme.js</code></p>
+					<img src="images/screenshot/colors.png" alt=""/>
+				</div>
+			</div>
+		</section>
+		
+		<hr/>
+		
+		<section class="app-brief" id="appname_icon">
+			<div class="container left-align">
+				<div class="section-header">
+					<h2 class="dark-text title">App Name & Icon - </h2>
+				</div>
+				<div>
+					<h3>Change the app name</h3>
+					<p>Open file <code>./package/android/app/src/main/res/values/strings.xml</code> and replace AppZilla with your app name
+					</p>
+					<img src="images/screenshot/appname.png" alt=""/>
+					<br/>
+					<br/>
+<pre class="brush: javascript; h-100">&lt;string name="app_name"&gt; AppZilla &lt;/string&gt;
+</pre>
+					<br/>
+					<h3>Change App Icon</h3>
+					<p>upload your icon in following link <a href="https://appicon.co/" class="text-primary">https://appicon.co/</a></p>
+					<p>open folder <code>./package/android/app/src/main/res/..</code></p>
+					<p>when you download you got files then replace them with the below.</p>
+					<img src="images/screenshot/applogo.png" alt=""/>
+
+					<p>After replace all folder open Android Studio.</p>
+					<ul class="list-style-1">
+						<li>Right Click on app folder.</li>
+						<li>then click on new you got Image Asset.</li>
+						<li>then click on Image Asset.</li>
+					</ul>
+					<img src="images/screenshot/applogo1.png" alt=""/>
+					<p>when you click image asset you got below modal and you upload your logo here and customize them.</p>
+					<img src="images/screenshot/logo2.png" alt=""/>
+					<p><code>Note: After all Changes Sync you project files and restart your app.</code></p>
+				</div>
+			</div>
+		</section>
+		<hr/>
+
+		<section class="app-brief" id="package_name">
+			<div class="container left-align">
+				<div class="section-header">
+					<h2 class="dark-text title">Package Name - </h2>
+				</div>
+				<div>
+					<h3>Change package name</h3>
+					<p>1. In: <code>/app/src/main/java/com/soziety/MainActivity.java</code></p>
+					<img src="images/screenshot/packagename1.png" alt=""/>
+					<p>2. In: <code>/app/src/main/java/com/soziety/MainApplication.java</code></p>
+					<img src="images/screenshot/packagename2.png" alt=""/>
+					<p>3. In: <code>/app/src/main/AndroidManifest.xml</code></p>
+					<img src="images/screenshot/packagename3.png" alt=""/>
+					<p>4. And in <code>./android/app/build.gradle</code></p>
+					<img src="images/screenshot/packagename4.png" alt=""/>
+					<p>5. in <code>./android/app/BUCK</code></p>
+					<img src="images/screenshot/packagename5.png" alt=""/>
+				</div>
+			</div>
+		</section>
+
+		<hr/>
+		
+		<section class="app-brief" id="setup_firebase">
+			<div class="container left-align">
+				<div class="section-header">
+					<h2 class="dark-text title">Setup Firebase - </h2>
+				</div>
+				<div>
+					<h3>Step 1 : Create Firebase App</h3>
+					<p>Go to <a href="https://console.firebase.google.com" class="text-primary">https://console.firebase.google.com</a> & click add project button</p>
+					<img src="images/screenshot/fr1.png" alt=""/>
+
+					<p>Continue and create the project.</p>
+
+					<img src="images/screenshot/fr2.png" alt=""/>
+
+					<h3>Strp 2 : Connect Firebase App To Your App</h3>
+
+					<img src="images/screenshot/fr3.png" alt=""/>
+					<img src="images/screenshot/fr4.png" alt=""/>
+					<p>Download <code>google-services.json</code> file.</p>
+					<p>Update File in <code>package/android/app/.</code> Folder.</p>
+					<img src="images/screenshot/fr5.png" alt=""/>
+					<br/>
+					<br/>
+					<iframe style="width:100%;height:600px" src="https://www.youtube.com/embed/IstbgJloG0A" title="Soziety Android Application Firebase Set Up" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+				</div>
+			</div>
+		</section>
+		<hr/>
+
+
+			
+		<!-- Our Products -->
+		<section class="app-brief" id="our_product">
+			<div class="container left-align">
+				<div class="section-header">
+					<h2 class="dark-text title">Our Products - </h2>
+				</div>
+				<div class="row other-theme">
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/kjQrvn">
+								<img src="images/product/karier.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/kjQrvn">
+										Karier - Job Portal Mobile App Framework7 PWA Template
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/e4ge6r">
+								<img src="images/product/biji.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/e4ge6r">
+										Biji - Coffee Shop Framework 7 Mobile App
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/do3Mdj">
+								<img src="images/product/sayur.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/do3Mdj">
+										Sayur - Food Delivery Framework 7 Mobile App
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/GjoMLB">
+								<img src="images/product/ajari.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/GjoMLB">
+										Ajari - E-learning Mobile App Template ( Framework 7 + PWA )
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/P00OWY">
+								<img src="images/product/kede.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/P00OWY">
+										Kede - Grocery Mobile App Template ( Framework 7 + PWA )
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/gyGa9">
+								<img src="images/product/gawee.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/gyGa9">
+										Gawee - ( Framework 7 + PWA ) Mobile HTML Template
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/0J3P5L">
+								<img src="images/product/jobie.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/0J3P5L">
+										Jobie - ( Bootstrap 5 + PWA ) Job Portal Mobile App Template 
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/DVkYLa">
+								<img src="images/product/gaya.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/DVkYLa">
+										Gaya - ( Framework 7 + PWA ) Fashion Store Mobile App Template
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/DVAxva">
+								<img src="images/product/ombe.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/DVAxva">
+										Ombe - ( Framework 7 + PWA ) Coffee Shop Mobile App 
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-4 col-sm-6 m-b30">
+						<div class="product-port-bx">
+							<a target="_blank" href="https://1.envato.market/DVAxva">
+								<img src="images/product/foodia.png" alt=""/>
+							</a>
+							<div class="product-info">
+								<h4 class="title">
+									<a target="_blank" href="https://1.envato.market/DVAxva">
+										Foodia - ( Bootstrap 5 + PWA ) Food Restaurant Mobile App Template
+									</a>
+								</h4>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Need Help -->
+		<section class="app-brief" id="custom_work" style="background-image: url(images/bg1.png); background-position: left center;">
+			<div class="container left-align">
+				<div class="col-md-12 text-center custom-info">
+					<h2 class="m-t0">Do You Need Help To Customization</h2>
+					<h3 class="text-primary">After Purchase A Template...</h3>
+					<h4>You Will Start Customizing According Your Requirement<br/> <span class="text-primary">BUT</span> What If You Don't Know</h4>
+					<h3 class="text-black">SOLUTION IS <span class="text-primary"><u>HIRE DexignZone</u></span></h3>
+					<div class="hire">
+						<h4><span class="text-black">Hire Same Team For </span> <span class="text-primary">Quality Customization</span></h4>
+						<ul>
+							<li>We Will Customize Template According To Your Requirement</li>
+							<li>We Will Upload On Server And Make Sure Your Website is Live</li>
+						</ul>
+						<div class="gmail-box">
+							<a href="skype:rahulxarma?chat" class="gmail"><i class="fa fa-skype"></i>rahulxarma</a>
+							<a target="_blank" href="mailto:dexignzones@gmail.com" class="gmail"><i class="fa fa-envelope"></i> dexignzones@gmail.com</a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		
+		<!-- Change Log -->
+		<section class="app-brief change-log" id="version_history">
+			<div class="container left-align">
+				<div class="section-header">
+					<h2 class="dark-text title">Version History - <small class="topbutton"><a class="scroltop" href="javascript:void(0);">#back to top</a></small></h2>
+				</div>
+				<h3>26 May 2023</h3>
+				<ul>
+					<li>Update React Native Version (0.71.8)</li>
+					<li>Compatible with iOS</li>
+					<li>Update JS Files</li>
+					<li>Code Optimization</li>
+					<li>Improve Some Design</li>
+				</ul>
+				<h3>13 March 2023</h3>
+				<ul>
+					<li>Code Optimization</li>
+					<li>Update Folder Structure</li>
+					<li>Add OnBoarding Screens</li>
+				</ul>
+				<h3>17 February 2023</h3>
+				<ul>
+					<li>Add LinkdIn Job Pack</li>
+					<li>Add Youtube Video Pack</li>
+					<li>Add Task Manager Pack</li>
+					<li>Add Swipeable components</li>
+				</ul>
+				<h3>13 January 2023</h3>
+				<ul>
+					<li>New - Created & Upload AppZilla</li>
+				</ul>
+			</div>
+		</section>
+			
+		<!-- Footer -->
+		<footer class="app-brief grey-bg">
+			<div class="container">
+				<p class="copyright">
+					© 2023 <a href="https://dexignzone.com/" target="_blank"><strong>DexignZone</strong></a>. All Rights Reserved
+				</p>
+			</div>
+		</footer>
+	
+	</div>
+</div>
+	
+<!-- JavaScript -->
+<script src="js/jquery.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="plugins/jstree/dist/jstree.min.js"></script>
+<script src="js/jquery.scrollTo.min.js"></script>
+<script src="js/jquery.localScroll.min.js"></script>
+<script src="js/scrollbar.min.js"></script>
+<script src="js/custom.js"></script>
+</body>
+</html>
